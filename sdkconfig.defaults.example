@@ -1,0 +1,10 @@
+# Copy this file to sdkconfig.defaults.local and set values before building.
+# Keep credentials local. The local sdkconfig is ignored by Git.
+CONFIG_BC_WIFI_SSID=""
+CONFIG_BC_WIFI_PASSWORD=""
+CONFIG_BC_SEARCH_RADIUS_M=5000
+CONFIG_BC_SEARCH_REFRESH_S=600
+CONFIG_BC_MAG_I2C_ADDRESS=12
+CONFIG_BC_MPU6050_I2C_ADDRESS=104
+CONFIG_BC_MOTOR_DRY_RUN=y
+# Set CONFIG_BC_MOTOR_ENABLE=y only after wiring checks and motor calibration.

@@ -1,0 +1,143 @@
+menu "BoozeCompass"
+
+    menu "Network and OpenStreetMap"
+        config BC_WIFI_SSID
+            string "Phone hotspot SSID"
+            default ""
+        config BC_WIFI_PASSWORD
+            string "Phone hotspot password"
+            default ""
+        config BC_OVERPASS_URL
+            string "Overpass API HTTPS endpoint"
+            default "https://overpass-api.de/api/interpreter"
+        config BC_SEARCH_RADIUS_M
+            int "Liquor store search radius (metres)"
+            range 250 50000
+            default 5000
+        config BC_SEARCH_REFRESH_S
+            int "Store search refresh interval (seconds)"
+            range 900 86400
+            default 1800
+    endmenu
+
+    menu "Sensor bus and BZ251"
+        config BC_I2C_SDA_GPIO
+            int "I2C SDA GPIO (provisional for ESP32-C3-DevKitM-1)"
+            range 0 21
+            default 4
+        config BC_I2C_SCL_GPIO
+            int "I2C SCL GPIO (provisional for ESP32-C3-DevKitM-1)"
+            range 0 21
+            default 5
+        config BC_I2C_FREQUENCY_HZ
+            int "I2C frequency (Hz)"
+            range 10000 400000
+            default 100000
+        config BC_GNSS_UART_RX_GPIO
+            int "GNSS UART RX GPIO"
+            range 0 21
+            default 6
+        config BC_GNSS_UART_TX_GPIO
+            int "GNSS UART TX GPIO"
+            range 0 21
+            default 7
+        config BC_GNSS_UART_BAUD
+            int "GNSS UART baud"
+            range 9600 460800
+            default 38400
+        config BC_MAG_I2C_ADDRESS
+            int "QMC5883 I2C address (decimal; 12 or 13)"
+            range 1 127
+            default 12
+        config BC_MPU6050_I2C_ADDRESS
+            int "MPU6050 I2C address (decimal; 104 for 0x68 or 105 for 0x69)"
+            range 104 105
+            default 104
+        config BC_MAG_DECLINATION_DEG
+            int "Magnetic declination (degrees; east positive)"
+            range -180 180
+            default 0
+        config BC_MAG_OFFSET_X
+            int "Magnetometer hard-iron X offset (raw counts)"
+            default 0
+        config BC_MAG_OFFSET_Y
+            int "Magnetometer hard-iron Y offset (raw counts)"
+            default 0
+        config BC_MAG_OFFSET_Z
+            int "Magnetometer hard-iron Z offset (raw counts)"
+            default 0
+        config BC_MAG_SCALE_X_MILLI
+            int "Magnetometer X soft-iron scale (1000 = 1.0)"
+            range 100 10000
+            default 1000
+        config BC_MAG_SCALE_Y_MILLI
+            int "Magnetometer Y soft-iron scale (1000 = 1.0)"
+            range 100 10000
+            default 1000
+        config BC_MAG_SCALE_Z_MILLI
+            int "Magnetometer Z soft-iron scale (1000 = 1.0)"
+            range 100 10000
+            default 1000
+        config BC_GPS_MAX_AGE_MS
+            int "Maximum accepted GPS fix age (ms)"
+            range 500 30000
+            default 5000
+        config BC_HEADING_MAX_AGE_MS
+            int "Maximum accepted compass age (ms)"
+            range 250 10000
+            default 1500
+        config BC_SENSOR_YAW_OFFSET_DEG
+            int "Magnetometer mounting yaw correction (degrees clockwise)"
+            range -180 180
+            default 0
+    endmenu
+
+    menu "ULN2003 stepper"
+        config BC_MOTOR_ENABLE
+            bool "Allow energizing the motor outputs"
+            default n
+        config BC_MOTOR_DRY_RUN
+            bool "Dry-run motor commands"
+            default y
+        config BC_MOTOR_IN1_GPIO
+            int "ULN2003 IN1 GPIO"
+            range 0 21
+            default 0
+        config BC_MOTOR_IN2_GPIO
+            int "ULN2003 IN2 GPIO"
+            range 0 21
+            default 1
+        config BC_MOTOR_IN3_GPIO
+            int "ULN2003 IN3 GPIO"
+            range 0 21
+            default 3
+        config BC_MOTOR_IN4_GPIO
+            int "ULN2003 IN4 GPIO"
+            range 0 21
+            default 10
+        config BC_MOTOR_STEPS_PER_REV
+            int "Measured output-shaft half-steps per revolution"
+            range 100 10000
+            default 4096
+        config BC_MOTOR_SPEED_DPS
+            int "Motor speed (degrees per second)"
+            range 1 120
+            default 20
+        config BC_MOTOR_ACCEL_DPS2
+            int "Motor acceleration (degrees per second squared)"
+            range 1 360
+            default 60
+        config BC_MOTOR_REVERSE
+            bool "Reverse motor rotation"
+            default n
+        config BC_POINTER_ZERO_OFFSET_DEG
+            int "Pointer zero correction (degrees clockwise)"
+            range -180 180
+            default 0
+        config BC_POINTER_DEADBAND_DEG
+            int "Pointer correction deadband (degrees)"
+            range 0 20
+            default 2
+    endmenu
+
+endmenu
